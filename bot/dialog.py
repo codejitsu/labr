@@ -21,5 +21,5 @@ class Dialog(abc.ABC):
         return sents, 0.0, kwargs
 
     @abc.abstractmethod
-    def reply(self, sents, confidence, **kwargs):
-        return None        
+    def respond(self, sents, confidence, **kwargs):
+        return None

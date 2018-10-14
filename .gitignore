@@ -1,3 +1,4 @@
+tools/
 env/
 bot/__pycache__/
 *.pyc

@@ -14,3 +14,9 @@ export CLASSPATH=$STANFORDTOOLSDIR/stanford-postagger-full-2015-04-20/stanford-p
 
 export STANFORD_MODELS=$STANFORDTOOLSDIR/stanford-postagger-full-2015-04-20/models:$STANFORDTOOLSDIR/stanford-ner-2015-04-20/classifiers
 ```
+
+```
+cd stanford-parser-full-2015-04-20
+cp stanford-parser-3.5.2-models.jar models.jar
+unzip models.jar
+```

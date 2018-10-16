@@ -54,7 +54,7 @@ class Converter(Dialog):
 
                 if results["src"] in self.metrics.keys():
                     confidence += .2
-                    if results["dst"] in self.metrics[results["src"]]:
+                    if results["dst"] in self.metrics[results["src"]]['Destination']:
                         confidence += .2
 
         return results, confidence, kwargs

@@ -65,10 +65,14 @@ class Converter(Dialog):
 
         if dst not in self.metrics:
             raise KeyError("cannot convert to '{}' units".format(src))
-        if src not in self.metrics[dst]:
+        if src not in self.metrics[dst]['Destination']:
             raise KeyError("cannot convert from {} to '{}'".format(src, dst))
 
-        return self.metrics[dst][src] * float(quantity), src, dst
+        units = self.metrics.get(dst).get('Units')[
+          self.metrics.get(dst).get('Destination').index(src)
+        ]
+
+        return units * float(quantity), src, dst
 
     def round(self, num):
         num = round(float(num), 4)
@@ -108,7 +112,7 @@ class Converter(Dialog):
             amount = self.numericalize(amount)
 
             return "There {} {} {} in {} {}".format(
-                vreb, amount, target, quantity, source
+                verb, amount, target, quantity, source
             )
         except KeyError as e:
             return "I'm sorry I {}".format(str(e))

@@ -5,7 +5,7 @@ from datetime import datetime
 import arrow
 from dateutil.relativedelta import relativedelta
 from answer import Answer
-
+import re
 
 class WikiDataAnswer(Answer):
     """Answer object from WikiData source"""
@@ -56,6 +56,8 @@ class WikiData(RestAdapter):
     WIKIDATA_URL = 'https://www.wikidata.org/w/api.php'
     WDSPARQL_URL = 'https://query.wikidata.org/sparql'
 
+    entity_regex = re.compile(r'Q\d+')
+
     def set_properties(self, properties={'lang':'en'}):
         self.properties = properties
 
@@ -94,6 +96,11 @@ class WikiData(RestAdapter):
         desc = dget(data, 'search.0.description')
         return Answer(data=desc)
 
+    def _get_label(self, subject):
+        """Get WikiData label of subject"""
+        data = self._search_entity(subject)
+        label = dget(data, 'search.0.label')
+        return Answer(data=label)
 
     def _get_id(self, name, _type='item'):
         """Get WikiData ID of a name"""
@@ -270,7 +277,7 @@ class WikiData(RestAdapter):
 
         if prop is None:
             return self._get_desc(subject)
-
+        print('{} {} {}'.format(qtype, subject, prop))
         if prop == 'age':
             bday_ans = self._get_property(subject, 'date of birth', 'P569')
             if not bday_ans:
@@ -281,20 +288,45 @@ class WikiData(RestAdapter):
             bday_ans.data = years
             return bday_ans
 
-        if prop == 'born':
-            if qtype == 'where':
-                prop_id = 'P19'
-            elif qtype == 'when':
-                prop_id = 'P569'
+        if self.properties['lang'] == 'en':
+            if prop == 'born':
+                if qtype == 'where':
+                    prop_id = 'P19'
+                elif qtype == 'when':
+                    prop_id = 'P569'
 
-        if prop == 'height':
-            prop_id = 'P2044,P2048'
+            if prop == 'height':
+                prop_id = 'P2044,P2048'
 
-        if prop in ['nickname', 'known as', 'alias', 'called']:
-            return self._get_aliases(subject)
+            if prop in ['nickname', 'known as', 'alias', 'called']:
+                return self._get_aliases(subject)
+        elif self.properties['lang'] == 'de':
+            if prop in ['geboren', 'gegründet']:
+                if qtype == 'wo':
+                    prop_id = 'P19'
+                elif qtype == 'wann':
+                    prop_id = 'P569'
+                    
+            if prop in ['gegründet']:
+                if qtype == 'wo':
+                    prop_id = 'P740'
+                elif qtype == 'wann':
+                    prop_id = 'P571'
 
-        return self._get_property(subject, prop, prop_id=prop_id)
+            if prop == 'height':
+                prop_id = 'P2044,P2048'
 
+            if prop in ['nickname', 'known as', 'alias', 'called']:
+                return self._get_aliases(subject)
+
+        result = self._get_property(subject, prop, prop_id=prop_id)
+
+        print(result.to_plain())
+
+        if self.entity_regex.match(result.to_plain()) is None:
+            return result
+        else:
+            return self._get_label(result.to_plain())
 
     def find_entity(self, qtype, inst, props):
         """Count number of things instance/subclass of inst with prop = prop_val

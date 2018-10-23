@@ -20,9 +20,13 @@ class TestNLQueryEngineDe(object):
         ("Wann wurde Donald Trump geboren?", "June 14, 1946"),
         ("Wann wurde Trump geboren?", "June 14, 1946"),
         #Wie alt ist München?
-        ("Welche Sprache spricht man in Sweden?", "Schwedisch, Jiddisch, Romani, Finnisch, samische Sprachen, Meänkieli")
+        #Wie alt ist Apple?
+        ("Welche Sprache spricht man in Sweden?", "Schwedisch, Jiddisch, Romani, Finnisch, samische Sprachen, Meänkieli"),
         #In welchen Filmen ist Arnold Schwarzenegger zu sehen?
-        #Wo wurde Leibniz geboren?
+        ("Wo wurde Leibniz geboren?", "Leipzig"),
+        ("Wo wurde Amazon gegründet?", "Seattle"),
+        ("Wo wurde Apple gegründet?", "Los Altos"),
+        ("Wo wurde Donald Trump geboren?", "Jamaica Hospital")
     ])
     def test_query(self, question, answer):
         reply = engine.query(question, format_='plain')

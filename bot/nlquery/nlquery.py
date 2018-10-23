@@ -219,10 +219,10 @@ RULES = {
             }),
 
             #Wie heißen Kinder von Trump?
-            ('( ROOT ( S ( PWAV:qtype_t ) ( VVFIN:action-o ) ( NP ( NN:prop-o ) ( PP ( APPR ) ( NN/NE:subject-o ) ) ) ) )', {
+            ('( ROOT ( S ( PWAV/PWS:qtype_t ) ( VVFIN/VAFIN:action-o ) ( NP ( NN:prop-o ) ( PP ( APPR ) ( NN/NE:subject-o ) ) ) ) )', {
                 'qtype_t': OrderedDict([
                     # Wie
-                    ('( PWAV:qtype-o )', {})
+                    ('( PWAV/PWS:qtype-o )', {})
                 ])
             }),
 

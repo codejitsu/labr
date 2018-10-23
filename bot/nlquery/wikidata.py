@@ -279,7 +279,7 @@ class WikiData(RestAdapter):
             return self._get_desc(subject)
         print('{} {} {}'.format(qtype, subject, prop))
         if prop == 'age':
-            bday_ans = self._get_property(subject, 'date of birth', 'P569')
+            bday_ans = self._get_property(subject, 'date of birth', 'P569,P571')
             if not bday_ans:
                 return None
             #import pdb;pdb.set_trace()
@@ -306,7 +306,7 @@ class WikiData(RestAdapter):
                     prop_id = 'P19'
                 elif qtype == 'wann':
                     prop_id = 'P569'
-                    
+
             if prop in ['gegründet']:
                 if qtype == 'wo':
                     prop_id = 'P740'

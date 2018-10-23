@@ -19,8 +19,9 @@ class TestNLQueryEngineDe(object):
         #("Wer hat Hitler getötet?", "Test")
         ("Wann wurde Donald Trump geboren?", "June 14, 1946"),
         ("Wann wurde Trump geboren?", "June 14, 1946"),
-        #Wie alt ist München?
-        #Wie alt ist Apple?
+        ("Wie alt ist Apple?", "42"),
+        #("Wie alt ist München?", "42"),
+        ("Was ist die Vorwahl von München?", "089"),
         ("Welche Sprache spricht man in Sweden?", "Schwedisch, Jiddisch, Romani, Finnisch, samische Sprachen, Meänkieli"),
         #In welchen Filmen ist Arnold Schwarzenegger zu sehen?
         ("Wo wurde Leibniz geboren?", "Leipzig"),

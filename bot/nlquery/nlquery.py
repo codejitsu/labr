@@ -203,7 +203,7 @@ RULES = {
             }),
 
             #Wie heißt die Frau von Trump?
-            ('( ROOT ( S ( PWAV/PWS:qtype_t ) ( VVFIN/VAFIN:action-o ) ( NP ( ART ) ( NN:prop-o ) ) ( PP ( APPR ) ( NN/NE:subject-o ) ) ) )', {
+            ('( ROOT ( S ( PWAV/PWS:qtype_t ) ( VVFIN/VAFIN:action-o ) ( NP ( ART ) ( NN/NE:prop-o ) ) ( PP ( APPR ) ( NN/NE:subject-o ) ) ) )', {
                 'qtype_t': OrderedDict([
                     # Wie
                     ('( PWAV/PWS:qtype-o )', {})
@@ -211,7 +211,15 @@ RULES = {
             }),
 
             #Wer ist die Frau von Trump?
-            ('( ROOT ( S ( PWS:qtype_t ) ( VAFIN:action-o ) ( NP ( ART ) ( NN:prop-o ) ( PP ( APPR ) ( NN/NE:subject-o ) ) ) ) )', {
+            ('( ROOT ( S ( PWS:qtype_t ) ( VAFIN:action-o ) ( NP ( ART ) ( NN/NE:prop-o ) ( PP ( APPR ) ( NN/NE:subject-o ) ) ) ) )', {
+                'qtype_t': OrderedDict([
+                    # Wie
+                    ('( PWAV/PWS:qtype-o )', {})
+                ])
+            }),
+
+            #Wer ist CEO von Oracle?
+            ('( ROOT ( S ( PWAV/PWS:qtype_t ) ( VAFIN:action-o ) ( NN/NE:prop-o ) ( PP ( APPR ) ( NN/NE:subject-o ) ) ) )', {
                 'qtype_t': OrderedDict([
                     # Wie
                     ('( PWAV/PWS:qtype-o )', {})
@@ -219,7 +227,7 @@ RULES = {
             }),
 
             #Wie heißen Kinder von Trump?
-            ('( ROOT ( S ( PWAV/PWS:qtype_t ) ( VVFIN/VAFIN:action-o ) ( NP ( NN:prop-o ) ( PP ( APPR ) ( NN/NE:subject-o ) ) ) ) )', {
+            ('( ROOT ( S ( PWAV/PWS:qtype_t ) ( VVFIN/VAFIN:action-o ) ( NP ( NN/NE:prop-o ) ( PP ( APPR ) ( NN/NE:subject-o ) ) ) ) )', {
                 'qtype_t': OrderedDict([
                     # Wie
                     ('( PWAV/PWS:qtype-o )', {})

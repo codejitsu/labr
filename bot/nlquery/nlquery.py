@@ -243,7 +243,7 @@ RULES = {
             }),
 
             #Wann wurde Donald Trump geboren?
-            ('( ROOT ( S ( PWAV/PWS:qtype_t ) ( VAFIN:action-o ) ( MPN:subject-o ) ( VP ( VVPP:prop-o ) ) ) )', {
+            ('( ROOT ( S ( PWAV/PWS:qtype_t ) ( VAFIN:action-o ) ( NP/MPN:subject-o ) ( VP ( VVPP:prop-o ) ) ) )', {
                 'qtype_t': OrderedDict([
                     # Wie
                     ('( PWAV/PWS:qtype-o )', {})

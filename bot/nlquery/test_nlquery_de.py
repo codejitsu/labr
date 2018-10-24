@@ -31,7 +31,8 @@ class TestNLQueryEngineDe(object):
         ("Stoner Rock", "Musikstil"),
         ("Donald Trump", "45. Präsident der Vereinigten Staaten"),
         ("Wer ist Donald Duck", "Comic- und Zeichentrick-Figur aus dem Disney-Studio"),
-        ("Motto von USA", "In God We Trust, E Pluribus Unum")
+        ("Motto von USA", "In God We Trust, E Pluribus Unum"),
+        ("Wann ist Steve Jobs gestorben", "October 5, 2011")
     ])
     def test_query(self, question, answer):
         reply = engine.query(question, format_='plain')

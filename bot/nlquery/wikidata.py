@@ -313,6 +313,12 @@ class WikiData(RestAdapter):
                 elif qtype == 'wann':
                     prop_id = 'P571'
 
+            if prop in ['gestorben']:
+                if qtype == 'wo':
+                    prop_id = 'P20'
+                elif qtype == 'wann':
+                    prop_id = 'P570'
+
             if prop == 'height':
                 prop_id = 'P2044,P2048'
 

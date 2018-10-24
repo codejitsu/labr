@@ -27,7 +27,11 @@ class TestNLQueryEngineDe(object):
         ("Wo wurde Leibniz geboren?", "Leipzig"),
         ("Wo wurde Amazon gegründet?", "Seattle"),
         ("Wo wurde Apple gegründet?", "Los Altos"),
-        ("Wo wurde Donald Trump geboren?", "Jamaica Hospital")
+        ("Wo wurde Donald Trump geboren?", "Jamaica Hospital"),
+        ("Stoner Rock", "Musikstil"),
+        ("Donald Trump", "45. Präsident der Vereinigten Staaten"),
+        ("Wer ist Donald Duck", "Comic- und Zeichentrick-Figur aus dem Disney-Studio"),
+        ("Motto von USA", "In God We Trust, E Pluribus Unum")
     ])
     def test_query(self, question, answer):
         reply = engine.query(question, format_='plain')

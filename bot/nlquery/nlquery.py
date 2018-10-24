@@ -531,6 +531,17 @@ class NLQueryEngine(LoggingInterface):
 
         sent = self.preprocess(sent)
         tree = next(self.parser.raw_parse(sent))
+
+        pos = [tag for word, tag in tree.pos()]
+
+        if len(set(['PWS', 'PWAV', 'PWAT']) & set(pos)) == 0:
+            if self.properties['lang'] == 'de':
+                sent = "Was ist " + sent
+            elif self.properties['lang'] == 'en':
+                sent = "What is " + sent
+
+            tree = next(self.parser.raw_parse(sent))
+
         context = {'query': sent, 'tree': tree}
 
         for e in tree:

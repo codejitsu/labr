@@ -4,7 +4,7 @@ import sys
 from nlquery import NLQueryEngine
 
 def main(argv):
-    lang = 'de'
+    lang = 'en'
     engine = NLQueryEngine(properties = {'lang': lang})
 
     while True:

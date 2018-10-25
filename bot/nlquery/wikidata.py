@@ -296,7 +296,7 @@ class WikiData(RestAdapter):
                     prop_id = 'P569'
 
             if prop == 'height':
-                prop_id = 'P2044,P2048'
+                prop_id = 'P2044,P2048,P2046'
 
             if prop in ['nickname', 'known as', 'alias', 'called']:
                 return self._get_aliases(subject)
@@ -320,7 +320,7 @@ class WikiData(RestAdapter):
                     prop_id = 'P570'
 
             if prop == 'height':
-                prop_id = 'P2044,P2048'
+                prop_id = 'P2044,P2048,P2046'
 
             if prop in ['nickname', 'known as', 'alias', 'called']:
                 return self._get_aliases(subject)

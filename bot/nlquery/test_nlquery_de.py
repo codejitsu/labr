@@ -32,7 +32,14 @@ class TestNLQueryEngineDe(object):
         ("Donald Trump", "45. Präsident der Vereinigten Staaten"),
         ("Wer ist Donald Duck", "Comic- und Zeichentrick-Figur aus dem Disney-Studio"),
         ("Motto von USA", "In God We Trust, E Pluribus Unum"),
-        ("Wann ist Steve Jobs gestorben", "October 5, 2011")
+        ("Wann ist Steve Jobs gestorben", "October 5, 2011"),
+        ("Wie groß ist Indische Ozean?", "70560000.0"),
+        ("Wie groß ist der Indische Ozean?", "70560000.0")
+        # TODO: (Gründungsjahr von Pink Floyd) -> prop:Gründungsjahr (None) -vectorize-> Gründungsdatum -> 1965
+        # TODO: (Landeshauptstadt von NRW) -> prop:Landeshauptstadt (None) -vectorize-> Hauptstadt -> Düsseldorf
+        # TODO: (Wer erfand C++) -> prop:erfand (None) -vectorize-> Designer -> Stroustroup
+        # TODO: chatbot -> Was ist Scala? -> Opernhaus in Mailand -> Was noch? -> Programmiersprache
+        #       ich kenne 7 begriffe -> zeige ersten 2.
     ])
     def test_query(self, question, answer):
         reply = engine.query(question, format_='plain')

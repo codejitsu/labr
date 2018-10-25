@@ -211,7 +211,7 @@ RULES = {
             }),
 
             #Wer ist die Frau von Trump?
-            ('( ROOT ( S ( PWS:qtype_t ) ( VAFIN:action-o ) ( NP ( ART ) ( NN/NE:prop-o ) ( PP ( APPR ) ( NN/NE:subject-o ) ) ) ) )', {
+            ('( ROOT ( S ( PWS:qtype_t ) ( VAFIN:action-o ) ( NP ( ART ) ( NN/NE:prop-o ) ( PP ( APPR ) ( FM/NN/NE:subject-o ) ) ) ) )', {
                 'qtype_t': OrderedDict([
                     # Wie
                     ('( PWAV/PWS:qtype-o )', {})
@@ -219,7 +219,7 @@ RULES = {
             }),
 
             #Wer ist CEO von Oracle?
-            ('( ROOT ( S ( PWAV/PWS:qtype_t ) ( VAFIN:action-o ) ( NN/NE:prop-o ) ( PP ( APPR ) ( NN/NE:subject-o ) ) ) )', {
+            ('( ROOT ( S ( PWAV/PWS:qtype_t ) ( VAFIN:action-o ) ( NN/NE:prop-o ) ( PP ( APPR ) ( NN/NE/FM:subject-o ) ) ) )', {
                 'qtype_t': OrderedDict([
                     # Wie
                     ('( PWAV/PWS:qtype-o )', {})
@@ -227,7 +227,7 @@ RULES = {
             }),
 
             #Wie heißen Kinder von Trump?
-            ('( ROOT ( S ( PWAV/PWS:qtype_t ) ( VVFIN/VAFIN:action-o ) ( NP ( NN/NE:prop-o ) ( PP ( APPR ) ( NN/NE:subject-o ) ) ) ) )', {
+            ('( ROOT ( S ( PWAV/PWS:qtype_t ) ( VVFIN/VAFIN:action-o ) ( NP ( NN/NE:prop-o ) ( PP ( APPR ) ( FM/MPN/NN/NE:subject-o ) ) ) ) )', {
                 'qtype_t': OrderedDict([
                     # Wie
                     ('( PWAV/PWS:qtype-o )', {})
@@ -508,8 +508,14 @@ class NLQueryEngine(LoggingInterface):
             sent = sent + '?'
         return sent
 
-#    def fun(self, subject, action, to_object=None, from_object=None):
-#        print("%s,%s,%s,%s" % (subject, action, to_object, from_object))
+    def cleanup(self, sent):
+        """Remove some stop words"""
+        stopwords = ['der', 'die', 'das', 'ein', 'eine', 'einen']
+        words = sent.split()
+
+        result = [word for word in words if word.lower() not in stopwords]
+
+        return ' '.join(result)
 
     def query(self, sent, format_='plain'):
         """Answers a query
@@ -530,17 +536,28 @@ class NLQueryEngine(LoggingInterface):
         """
 
         sent = self.preprocess(sent)
+        sent = self.cleanup(sent)
         tree = next(self.parser.raw_parse(sent))
 
         pos = [tag for word, tag in tree.pos()]
 
-        if len(set(['PWS', 'PWAV', 'PWAT']) & set(pos)) == 0:
-            if self.properties['lang'] == 'de':
-                sent = "Was ist " + sent
-            elif self.properties['lang'] == 'en':
-                sent = "What is " + sent
+        if self.properties['lang'] == 'de':
+            if len(set(['PWS', 'PWAV', 'PWAT']) & set(pos)) == 0:
+                print("Tree before:")
+                for e in tree:
+                    print(str(e))
 
-            tree = next(self.parser.raw_parse(sent))
+                sent = "Was ist " + sent
+                tree = next(self.parser.raw_parse(sent))
+        # TODO
+        #elif self.properties['lang'] == 'en':
+        #    if len(set(['WHNP']) & set(pos)) == 0:
+        #        print("Tree before:")
+        #        for e in tree:
+        #            print(str(e))
+        #
+        #        sent = "What is " + sent
+        #        tree = next(self.parser.raw_parse(sent))
 
         context = {'query': sent, 'tree': tree}
 

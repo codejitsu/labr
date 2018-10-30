@@ -9,3 +9,4 @@ pattern==3.6
 arrow==0.7.0
 grequests==0.3.0
 pluggy==0.7.1
+AIML-Bot==0.0.3

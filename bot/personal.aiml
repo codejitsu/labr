@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
+
+	<category>
+		<pattern>WAS KANNST DU</pattern>
+		<template><srai>whatcanyoudo</srai></template>
+	</category>
+
+	<category>
+		<pattern>WAS KANNST DU MACHEN</pattern>
+		<template><srai>whatcanyoudo</srai></template>
+	</category>
+
+	<category>
+		<pattern>WAS KANNST DU TUN</pattern>
+		<template><srai>whatcanyoudo</srai></template>
+	</category>
+
+	<category>
+		<pattern>WAS KANNST DU FÜR MICH TUN</pattern>
+		<template><srai>whatcanyoudo</srai></template>
+	</category>
+
+	<category>
+		<pattern>WAS KANNST DU FÜR MICH MACHEN</pattern>
+		<template><srai>whatcanyoudo</srai></template>
+	</category>
+
+	<category>
+		<pattern>WHATCANYOUDO</pattern>
+		<template>
+			<random>
+				<li>Einiges. Kurz mit dir unterhalten, zum Beispiel.</li>
+				<li>Fragen beantworten. Zum Beispiel: 'Wie alt ist Donald Trump?', oder 'Wie groß ist Deutschland?'</li>
+				<li>Du kannst mich nach Zeit fragen.</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>WIE ALT BIST DU</pattern>
+		<template><srai>howold</srai></template>
+	</category>
+
+	<category>
+		<pattern>WIE ALT SIND SIE</pattern>
+		<template><srai>howold</srai> Wir können aber gerne per du sein.</template>
+	</category>
+
+	<category>
+		<pattern>HOWOLD</pattern>
+		<template>
+			<random>
+				<li>Ich bin unsterblich.</li>
+				<li>42!</li>
+				<li>Ich werde nicht alt.</li>
+				<li>ich denke, ich bin 101001010111 Jahre alt.</li>
+				<li>Das ist eine sehr private Frage.</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>WIE IST DEIN NAME</pattern>
+		<template><srai>myname</srai></template>
+	</category>
+
+	<category>
+		<pattern>WIE HEISST DU</pattern>
+		<template><srai>myname</srai></template>
+	</category>
+
+	<category>
+		<pattern>WIE HEISSEN SIE</pattern>
+		<template><srai>myname</srai> Waren wir nicht bei du bereits?</template>
+	</category>
+
+	<category>
+		<pattern>WER BIST DU</pattern>
+		<template><srai>myname</srai></template>
+	</category>
+
+	<category>
+		<pattern>WAS BIST DU</pattern>
+		<template><srai>myname</srai></template>
+	</category>
+
+	<category>
+		<pattern>MYNAME</pattern>
+		<template>
+			<random>
+				<li>Ich bin ein Bot.</li>
+				<li>Ich habe viele Namen. Aber du kannst mich Bot nennen.</li>
+				<li>Ich hab keinen richtigen Namen. Für dich bin ich ein Bot.</li>
+				<li>Bot. Ro-Bot.</li>
+			</random>
+		</template>
+	</category>
+</aiml>

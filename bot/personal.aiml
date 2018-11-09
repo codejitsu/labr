@@ -9,6 +9,26 @@
 		</category>
 
 		<category>
+			<pattern>WIE GEHT ES</pattern>
+			<template><srai>howareyou</srai></template>
+		</category>
+
+		<category>
+			<pattern>WIE GEHT ES IHNEN</pattern>
+			<template><srai>howareyou</srai></template>
+		</category>
+
+		<category>
+			<pattern>WIE GEHTS DIR</pattern>
+			<template><srai>howareyou</srai></template>
+		</category>
+
+		<category>
+			<pattern>WIE GEHT ES DIR</pattern>
+			<template><srai>howareyou</srai></template>
+		</category>
+
+		<category>
 			<pattern>HOWAREYOU</pattern>
 			<template>
 				<condition name="mood">

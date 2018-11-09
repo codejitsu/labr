@@ -2,8 +2,8 @@ from dialog import Dialog
 import aiml_bot
 
 class PersonalAiml(Dialog):
-    def __init__(self):
-        self.bot = aiml_bot.Bot(learn='personal.aiml')
+    def __init__(self, verbose):
+        self.bot = aiml_bot.Bot(learn='personal.aiml', verbose=verbose)
 
     def parse(self, text):
         return text

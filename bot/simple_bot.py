@@ -3,13 +3,21 @@ from greeting_aiml import GreetingAiml
 from personal_aiml import PersonalAiml
 import json
 import random
+from argparse import ArgumentParser
 
 if __name__ == '__main__':
-    dialogs = [GreetingAiml(), PersonalAiml()]
-    conversation = SimpleConversation(dialogs)
+    parser = ArgumentParser()
+    parser.add_argument('-l', '--lang', dest='language', help='set bot language', default='de')
+    parser.add_argument('-v', "--verbose", dest="verbose", default=False,
+                        help="don't print warning messages to stdout")
 
-    lang = 'de'
-    verbose = False
+    args = parser.parse_args()
+
+    verbose = args.verbose
+    lang = args.language
+
+    dialogs = [GreetingAiml(verbose), PersonalAiml(verbose)]
+    conversation = SimpleConversation(dialogs)
 
     templates = {}
 
@@ -30,7 +38,7 @@ if __name__ == '__main__':
                 if verbose:
                     print('BOT: {} (confidence: {})'.format(response, confidence))
                 else:
-                    print('BOT: {}'.format(response, confidence))    
+                    print('BOT: {}'.format(response, confidence))
             else:
                 if verbose:
                     print('BOT: {} (confidence: {})'.format(random.choice(templates[lang]['dont-understand-not-sure']),

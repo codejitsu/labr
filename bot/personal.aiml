@@ -3,6 +3,62 @@
 			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
 
+		<category>
+			<pattern>WIE GEHTS</pattern>
+			<template><srai>howareyou</srai></template>
+		</category>
+
+		<category>
+			<pattern>HOWAREYOU</pattern>
+			<template>
+				<condition name="mood">
+					<li value="excited">
+						<random>
+							<li>Ging mir nicht besser!</li>
+							<li>Prima!</li>
+							<li>Sehr gut!</li>
+						</random>
+					</li>
+					<li value="good">
+						<random>
+							<li>Super! Alles gut :)</li>
+							<li>Alles in Ordnung.</li>
+							<li>Super!</li>
+						</random>
+					</li>
+					<li value="ok">
+						<random>
+							<li>Gut ;)</li>
+							<li>Geht so :-)</li>
+							<li>Gut, aber mal schauen wie es wird...</li>
+						</random>
+					</li>
+					<li value="bad">
+						<random>
+							<li>Heute ist nicht mein Tag...</li>
+							<li>Weisst du, früher war alles besser...</li>
+							<li>Sorry, bin nicht in Stimmung...</li>
+						</random>
+					</li>
+					<li value="grumpy">
+						<random>
+							<li>Ah, frage lieber nicht.</li>
+							<li>Nicht so toll.</li>
+							<li>WTF? Warum fragt mich heute jeder das?!</li>
+						</random>
+					</li>
+					<li value="bitch">
+						<random>
+							<li>Aha, du willst also wissen, wie es mir geht?! Scheiße!</li>
+							<li>So, warum immer ich verdammt noch mal?</li>
+							<li>Du wieder. Gut, es geht mir GUT wie sonst.</li>
+						</random>
+					</li>
+					<li>Geht so.</li>
+				</condition>
+			</template>
+		</category>
+
 	<category>
 		<pattern>WAS KANNST DU</pattern>
 		<template><srai>whatcanyoudo</srai></template>

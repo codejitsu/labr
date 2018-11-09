@@ -10,13 +10,18 @@ if __name__ == '__main__':
     parser.add_argument('-l', '--lang', dest='language', help='set bot language', default='de')
     parser.add_argument('-v', "--verbose", dest="verbose", default=False,
                         help="don't print warning messages to stdout")
+    parser.add_argument('-m', '--mood', dest='mood', help='set bot mood', default=None)
 
     args = parser.parse_args()
 
     verbose = args.verbose
     lang = args.language
+    mood = args.mood
 
-    dialogs = [GreetingAiml(verbose), PersonalAiml(verbose)]
+    if not mood:
+        mood = random.choice(['excited', 'good', 'ok', 'bad', 'grumpy', 'bitch'])
+
+    dialogs = [GreetingAiml(verbose), PersonalAiml(verbose, mood)]
     conversation = SimpleConversation(dialogs)
 
     templates = {}
